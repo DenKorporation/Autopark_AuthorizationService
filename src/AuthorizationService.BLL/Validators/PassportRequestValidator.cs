@@ -44,15 +44,21 @@ public class PassportRequestValidator : AbstractValidator<PassportRequest>
 
         RuleFor(x => x.IssueDate)
             .NotEmpty()
-            .WithMessage("Passport issue date was expected");
+            .WithMessage("Passport issue date was expected")
+            .Matches(@"^\d{4}-\d{2}-\d{2}$")
+            .WithMessage("Invalid date format. Expected format is 'yyyy-MM-dd'.");
 
         RuleFor(x => x.ExpiryDate)
             .NotEmpty()
-            .WithMessage("Passport expiry date was expected");
+            .WithMessage("Passport expiry date was expected")
+            .Matches(@"^\d{4}-\d{2}-\d{2}$")
+            .WithMessage("Invalid date format. Expected format is 'yyyy-MM-dd'.");
 
         RuleFor(x => x.BirthDate)
             .NotEmpty()
-            .WithMessage("Birth date was expected");
+            .WithMessage("Birth date was expected")
+            .Matches(@"^\d{4}-\d{2}-\d{2}$")
+            .WithMessage("Invalid date format. Expected format is 'yyyy-MM-dd'.");
 
         RuleFor(x => x.UserId)
             .NotEmpty()

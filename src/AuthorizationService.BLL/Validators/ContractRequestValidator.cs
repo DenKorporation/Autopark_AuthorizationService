@@ -15,11 +15,15 @@ public class ContractRequestValidator : AbstractValidator<ContractRequest>
 
         RuleFor(x => x.StartDate)
             .NotEmpty()
-            .WithMessage("Contract start date was expected");
+            .WithMessage("Contract start date was expected")
+            .Matches(@"^\d{4}-\d{2}-\d{2}$")
+            .WithMessage("Invalid date format. Expected format is 'yyyy-MM-dd'.");
 
         RuleFor(x => x.EndDate)
             .NotEmpty()
-            .WithMessage("Contract end date was expected");
+            .WithMessage("Contract end date was expected")
+            .Matches(@"^\d{4}-\d{2}-\d{2}$")
+            .WithMessage("Invalid date format. Expected format is 'yyyy-MM-dd'.");
 
         RuleFor(x => x.UserId)
             .NotEmpty()

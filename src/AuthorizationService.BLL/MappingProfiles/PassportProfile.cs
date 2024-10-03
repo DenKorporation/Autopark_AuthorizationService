@@ -29,9 +29,9 @@ public class PassportProfile : Profile
             .ForMember(dest => dest.Firstname, opt => opt.MapFrom(src => src.Firstname))
             .ForMember(dest => dest.Lastname, opt => opt.MapFrom(src => src.Lastname))
             .ForMember(dest => dest.Patronymic, opt => opt.MapFrom(src => src.Patronymic))
-            .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => src.BirthDate))
-            .ForMember(dest => dest.IssueDate, opt => opt.MapFrom(src => src.IssueDate))
-            .ForMember(dest => dest.ExpiryDate, opt => opt.MapFrom(src => src.ExpiryDate))
+            .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => DateOnly.Parse(src.BirthDate)))
+            .ForMember(dest => dest.IssueDate, opt => opt.MapFrom(src => DateOnly.Parse(src.IssueDate)))
+            .ForMember(dest => dest.ExpiryDate, opt => opt.MapFrom(src => DateOnly.Parse(src.ExpiryDate)))
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
     }
 }

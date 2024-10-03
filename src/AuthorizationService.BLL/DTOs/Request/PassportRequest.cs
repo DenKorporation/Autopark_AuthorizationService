@@ -7,7 +7,7 @@ public record PassportRequest(
     string Firstname,
     string Lastname,
     string? Patronymic,
-    DateOnly BirthDate,
-    DateOnly IssueDate,
-    DateOnly ExpiryDate,
+    string BirthDate,
+    string IssueDate,
+    string ExpiryDate,
     Guid UserId);

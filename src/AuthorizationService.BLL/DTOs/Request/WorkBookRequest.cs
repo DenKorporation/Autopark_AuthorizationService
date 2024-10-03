@@ -2,5 +2,5 @@ namespace AuthorizationService.BLL.DTOs.Request;
 
 public record WorkBookRequest(
     string Number,
-    DateOnly IssueDate,
+    string IssueDate,
     Guid UserId);

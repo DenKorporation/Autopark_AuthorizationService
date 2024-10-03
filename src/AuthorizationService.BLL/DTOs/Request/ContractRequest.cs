@@ -2,6 +2,6 @@ namespace AuthorizationService.BLL.DTOs.Request;
 
 public record ContractRequest(
     string Number,
-    DateOnly StartDate,
-    DateOnly EndDate,
+    string StartDate,
+    string EndDate,
     Guid UserId);

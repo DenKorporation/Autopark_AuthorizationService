@@ -4,5 +4,5 @@ public record UserFilterRequest(
     int PageNumber,
     int PageSize,
     string? Role,
-    DateOnly? BirthdateFrom,
-    DateOnly? BirthdateTo);
+    string? BirthdateFrom,
+    string? BirthdateTo);

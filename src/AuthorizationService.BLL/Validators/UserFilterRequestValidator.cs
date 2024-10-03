@@ -23,5 +23,15 @@ public class UserFilterRequestValidator : AbstractValidator<UserFilterRequest>
             .MaximumLength(256)
             .When(x => x.Role is not null)
             .WithMessage("Length of role mustn't exceed 256");
+
+        RuleFor(x => x.BirthdateFrom)
+            .Matches(@"^\d{4}-\d{2}-\d{2}$")
+            .WithMessage("Invalid date format. Expected format is 'yyyy-MM-dd'.")
+            .When(x => x.BirthdateFrom is not null);
+
+        RuleFor(x => x.BirthdateTo)
+            .Matches(@"^\d{4}-\d{2}-\d{2}$")
+            .WithMessage("Invalid date format. Expected format is 'yyyy-MM-dd'.")
+            .When(x => x.BirthdateTo is not null);
     }
 }

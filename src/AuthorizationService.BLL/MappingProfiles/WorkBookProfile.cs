@@ -17,7 +17,7 @@ public class WorkBookProfile : Profile
 
         CreateMap<WorkBookRequest, WorkBook>()
             .ForMember(dest => dest.Number, opt => opt.MapFrom(src => src.Number))
-            .ForMember(dest => dest.IssueDate, opt => opt.MapFrom(src => src.IssueDate))
+            .ForMember(dest => dest.IssueDate, opt => opt.MapFrom(src => DateOnly.Parse(src.IssueDate)))
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
     }
 }

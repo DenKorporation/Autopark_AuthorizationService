@@ -21,8 +21,8 @@ public class ContractProfile : Profile
 
         CreateMap<ContractRequest, Contract>()
             .ForMember(dest => dest.Number, opt => opt.MapFrom(src => src.Number))
-            .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => src.StartDate))
-            .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.EndDate))
+            .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => DateOnly.Parse(src.StartDate)))
+            .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => DateOnly.Parse(src.EndDate)))
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
     }
 }

@@ -26,8 +26,8 @@ public class ContractService(
         resultQuery = FilterContracts(
             resultQuery,
             request.Number,
-            request.StartDate,
-            request.EndDate,
+            request.StartDate is not null ? DateOnly.Parse(request.StartDate) : null,
+            request.EndDate is not null ? DateOnly.Parse(request.EndDate) : null,
             request.IsValid,
             request.UserId);
 

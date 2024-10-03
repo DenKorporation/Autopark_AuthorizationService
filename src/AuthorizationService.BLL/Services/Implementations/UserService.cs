@@ -25,7 +25,11 @@ public class UserService(
     {
         var resultQuery = await userRepository.GetAllAsync(cancellationToken);
 
-        resultQuery = FilterUsers(resultQuery, request.Role, request.BirthdateFrom, request.BirthdateTo);
+        resultQuery = FilterUsers(
+            resultQuery,
+            request.Role,
+            request.BirthdateFrom is not null ? DateOnly.Parse(request.BirthdateFrom) : null,
+            request.BirthdateTo is not null ? DateOnly.Parse(request.BirthdateTo) : null);
 
         var destQuery = resultQuery.ProjectTo<UserResponse>(mapper.ConfigurationProvider);
 

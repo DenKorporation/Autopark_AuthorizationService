@@ -4,7 +4,7 @@ public record ContractFilterRequest(
     int PageNumber,
     int PageSize,
     string? Number,
-    DateOnly? StartDate,
-    DateOnly? EndDate,
+    string? StartDate,
+    string? EndDate,
     bool? IsValid,
     Guid? UserId);

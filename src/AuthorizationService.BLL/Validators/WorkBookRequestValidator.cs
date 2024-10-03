@@ -15,7 +15,9 @@ public class WorkBookRequestValidator : AbstractValidator<WorkBookRequest>
 
         RuleFor(x => x.IssueDate)
             .NotEmpty()
-            .WithMessage("Work book issue date was expected");
+            .WithMessage("Work book issue date was expected")
+            .Matches(@"^\d{4}-\d{2}-\d{2}$")
+            .WithMessage("Invalid date format. Expected format is 'yyyy-MM-dd'.");
 
         RuleFor(x => x.UserId)
             .NotEmpty()
