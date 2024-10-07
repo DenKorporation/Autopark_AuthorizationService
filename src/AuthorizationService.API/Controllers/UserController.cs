@@ -34,7 +34,7 @@ public class UserController(IUserService service)
     }
 
     [HttpGet("{filterEmail}")]
-    public async Task<IResult> GetUserByIdAsync(string filterEmail, CancellationToken cancellationToken = default)
+    public async Task<IResult> GetUserByEmailAsync(string filterEmail, CancellationToken cancellationToken = default)
     {
         var result = await service.GetByEmailAsync(filterEmail, cancellationToken);
 

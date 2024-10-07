@@ -17,7 +17,7 @@ public class PassportRepository(AuthContext dbContext)
         return await _dbContext
             .Passports
             .AsNoTracking()
-            .FirstOrDefaultAsync(p => p.IdentificationNumber == p.Series, cancellationToken);
+            .FirstOrDefaultAsync(p => p.IdentificationNumber == identificationNumber, cancellationToken);
     }
 
     public async Task<Passport?> GetBySeriesAndNumberAsync(

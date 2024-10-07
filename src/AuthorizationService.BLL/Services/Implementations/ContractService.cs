@@ -164,7 +164,7 @@ public class ContractService(
 
         if (isValid is not null)
         {
-            queryable = queryable.Where(c => DateOnly.FromDateTime(DateTime.Today) <= c.EndDate);
+            queryable = queryable.Where(c => DateOnly.FromDateTime(DateTime.Today) <= c.EndDate == isValid);
         }
 
         if (userId is not null)
