@@ -279,7 +279,15 @@ public class UserService(
         if (password is null)
         {
             return new ValidationError(
-                new Dictionary<string, string[]> { { "Password", ["Password was expected"] } },
+                new Dictionary<string, string[]>
+                {
+                    {
+                        "Password",
+                        [
+                            "Password was expected",
+                        ]
+                    },
+                },
                 "User.Validation");
         }
 

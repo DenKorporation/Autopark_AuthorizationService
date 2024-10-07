@@ -15,7 +15,7 @@ public static class DataFakers
         .RuleFor(u => u.WorkBook, _ => null)
         .RuleFor(u => u.Passport, _ => null)
         .RuleFor(u => u.Contracts, _ => new List<Contract>())
-        .RuleFor(u => u.Roles, _ => new List<IdentityRole<Guid>> { new(Roles.Administrator) });
+        .RuleFor(u => u.Roles, _ => new List<IdentityRole<Guid>> { new IdentityRole<Guid>(Roles.Administrator) });
 
     public static Faker<UserRequest> UserRequestFaker => new Faker<UserRequest>()
         .CustomInstantiator(

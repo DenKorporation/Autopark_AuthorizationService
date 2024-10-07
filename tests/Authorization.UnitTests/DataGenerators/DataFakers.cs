@@ -15,7 +15,7 @@ public static class DataFakers
         .RuleFor(u => u.WorkBook, _ => null)
         .RuleFor(u => u.Passport, _ => null)
         .RuleFor(u => u.Contracts, _ => new List<Contract>())
-        .RuleFor(u => u.Roles, _ => new List<IdentityRole<Guid>> { new (Roles.Administrator) });
+        .RuleFor(u => u.Roles, _ => new List<IdentityRole<Guid>> { new IdentityRole<Guid>(Roles.Administrator) });
 
     public static Faker<UserRequest> UserRequestFaker => new Faker<UserRequest>()
         .CustomInstantiator(
@@ -70,7 +70,7 @@ public static class DataFakers
         .RuleFor(p => p.ExpiryDate, (_, p) => DateOnly.Parse(p.IssueDate).AddYears(10).ToString());
 
     public static Faker<WorkBook> WorkBookFaker => new Faker<WorkBook>()
-        .RuleFor(w => w.Id, f => Guid.NewGuid())
+        .RuleFor(w => w.Id, _ => Guid.NewGuid())
         .RuleFor(w => w.Number, f => f.Random.String(8, '0', '9'))
         .RuleFor(w => w.IssueDate, f => DateOnly.FromDateTime(f.Date.Past(5)))
         .RuleFor(c => c.User, _ => UserFaker.Generate())
@@ -84,6 +84,6 @@ public static class DataFakers
                 Guid.Empty));
 
     public static Faker<IdentityRole<Guid>> RoleFaker => new Faker<IdentityRole<Guid>>()
-        .RuleFor(w => w.Id, f => Guid.NewGuid())
+        .RuleFor(w => w.Id, _ => Guid.NewGuid())
         .RuleFor(w => w.Name, f => f.Random.String());
 }

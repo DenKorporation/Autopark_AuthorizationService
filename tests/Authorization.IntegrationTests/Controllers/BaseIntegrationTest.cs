@@ -17,10 +17,6 @@ public abstract class BaseIntegrationTest
     private readonly CustomWebApplicationFactory _factory;
     private readonly IServiceScope _scope;
 
-    protected readonly AuthContext TestDbContext;
-    protected readonly HttpClient Client;
-    protected readonly UserManager<User> UserManager;
-
     protected BaseIntegrationTest(CustomWebApplicationFactory factory)
     {
         _factory = factory;
@@ -41,6 +37,10 @@ public abstract class BaseIntegrationTest
             Client.BaseAddress = new Uri(Client.BaseAddress.AbsoluteUri + BasePath);
         }
     }
+
+    protected AuthContext TestDbContext { get; }
+    protected UserManager<User> UserManager { get; }
+    protected HttpClient Client { get; }
 
     public void Dispose()
     {
