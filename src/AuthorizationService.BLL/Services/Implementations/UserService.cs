@@ -49,6 +49,8 @@ public class UserService(
             return resultUser.ToResult();
         }
 
+        await userRepository.LoadRelatedData(resultUser.Value, cancellationToken);
+
         return mapper.Map<UserResponse>(resultUser.Value);
     }
 
@@ -60,6 +62,8 @@ public class UserService(
         {
             return resultUser.ToResult();
         }
+
+        await userRepository.LoadRelatedData(resultUser.Value, cancellationToken);
 
         return mapper.Map<UserResponse>(resultUser.Value);
     }
@@ -200,6 +204,8 @@ public class UserService(
             return new InternalServerError("User.Update", "Something went wrong when saving user claims");
         }
 
+        await userRepository.LoadRelatedData(dbUser, cancellationToken);
+
         return mapper.Map<UserResponse>(dbUser);
     }
 
@@ -234,8 +240,7 @@ public class UserService(
     {
         if (role is not null)
         {
-            queryable = queryable.Where(
-                c => c.Roles.Any(r => r.Name!.Equals(role, StringComparison.InvariantCultureIgnoreCase)));
+            queryable = queryable.Where(c => c.Roles.Any(r => r.NormalizedName!.Equals(role.ToUpperInvariant())));
         }
 
         if (birthdateFrom is not null)

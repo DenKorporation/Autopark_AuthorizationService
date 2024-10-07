@@ -35,4 +35,6 @@ public interface IUserRepository
         CancellationToken cancellationToken = default);
 
     public Task<IdentityResult> DeleteUserAsync(User user, CancellationToken cancellationToken = default);
+
+    public Task LoadRelatedData(User user, CancellationToken cancellationToken = default);
 }

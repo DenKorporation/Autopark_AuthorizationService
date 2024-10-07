@@ -19,18 +19,12 @@ public class UserRepository(AuthContext dbContext, UserManager<User> userManager
 
     public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
-        return await dbContext
-            .Users
-            .AsNoTracking()
-            .FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
+        return await userManager.FindByEmailAsync(email);
     }
 
     public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await dbContext
-            .Users
-            .AsNoTracking()
-            .FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+        return await userManager.FindByIdAsync(id.ToString());
     }
 
     public Task<IQueryable<User>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -89,6 +83,14 @@ public class UserRepository(AuthContext dbContext, UserManager<User> userManager
     public async Task<IdentityResult> DeleteUserAsync(User user, CancellationToken cancellationToken = default)
     {
         return await userManager.DeleteAsync(user);
+    }
+
+    public async Task LoadRelatedData(User user, CancellationToken cancellationToken = default)
+    {
+        await dbContext.Entry(user).Reference(u => u.Passport).LoadAsync(cancellationToken);
+        await dbContext.Entry(user).Reference(u => u.WorkBook).LoadAsync(cancellationToken);
+        await dbContext.Entry(user).Collection(u => u.Contracts).LoadAsync(cancellationToken);
+        await dbContext.Entry(user).Collection(u => u.Roles).LoadAsync(cancellationToken);
     }
 
     private async Task<IdentityResult> RemoveAllUserRoleAsync(User user, CancellationToken cancellationToken = default)

@@ -12,10 +12,12 @@ public class PassportConfiguration : IEntityTypeConfiguration<Passport>
             .HasKey(p => p.Id);
 
         builder
-            .HasAlternateKey(p => p.IdentificationNumber);
+            .HasIndex(p => p.IdentificationNumber)
+            .IsUnique();
 
         builder
-            .HasAlternateKey(p => new { p.Series, p.Number });
+            .HasIndex(p => new { p.Series, p.Number })
+            .IsUnique();
 
         builder
             .Property(p => p.Firstname)

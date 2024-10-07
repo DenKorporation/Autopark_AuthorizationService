@@ -149,7 +149,7 @@ public class ContractService(
     {
         if (number is not null)
         {
-            queryable = queryable.Where(c => c.Number.Contains(number, StringComparison.InvariantCultureIgnoreCase));
+            queryable = queryable.Where(c => c.Number.ToLower().Contains(number.ToLower()));
         }
 
         if (startDate is not null)
