@@ -1,0 +1,14 @@
+﻿name: authorization-service
+
+services:        
+  authorization-service.database:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=authorization
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - .containers/authorization-db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432 
